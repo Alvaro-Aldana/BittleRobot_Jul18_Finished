@@ -33,6 +33,7 @@ else:
 def askForCommand():
     #return input("listening... ")
     # asking the microphone for audio data
+    speaker.speak("listening...")
     record_voice()
     text = read_wav()
     speaker.speak(translator.translate("Text: ")+text)
@@ -74,7 +75,7 @@ def listening():
 
 
 def listen_in_back():
-    time.sleep(5)
+    time.sleep(6)
     global waiting
     while waiting:
         message = read_wav()
@@ -85,7 +86,6 @@ def listen_in_back():
 
 
 def record_voice():
-    speaker.speak("listening...")
     record_voice=sounddevice.rec(int(second*fs),samplerate=fs,channels=1)
     sounddevice.wait()
     write("audio.wav",fs,record_voice)
