@@ -35,17 +35,22 @@ def loop():
         else:
             # it takes what is said and until it can figure out a command it stays here
             user_msgs = textAnalyzer.analyze(user_msg)
-            for user_msg in user_msgs:
-                print(user_msg[0])
-                if user_msg[0] == "quit":
+            print(user_msgs)
+            for i in range(len(user_msgs)):
+                print(user_msgs[i][0])
+                if user_msgs[i][0] == "quit":
                     CONNECTED = False
                 else:
                     # makes the text into byte
-                    message = user_msg[0].encode(FORMAT)
+                    message = user_msgs[i][0].encode(FORMAT)
                     # sends the byte to the robot
                     ser.write(message)
-                    if len(user_msgs)>1:
-                        time.sleep(int(user_msg[1]))
+                    if len(user_msgs[i])>1:
+                        time.sleep(int(user_msgs[i][1]))
+                        ser.write("kup".encode(FORMAT))
+                        time.sleep(0.1)
+                    elif i<len(user_msgs):
+                        time.sleep(5)
     # if quit the connection gets closed
     speaker.speak(listener.translator.translate("closing connection"))
     ser.write("krest".encode(FORMAT))

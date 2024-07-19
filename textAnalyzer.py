@@ -76,9 +76,6 @@ def search(words):
     print(f"incomplete_action: {incomplete_action}")
 # if command is not found it asks again
     if len(complete_actions)>0:
-        for i in range(len(complete_actions)):
-            if len(complete_actions[i])==1:
-                complete_actions[i].append(5)
         return complete_actions
     speaker.speak(listener.translator.translate("more information needed to complete an action"))
     time.sleep(2)
