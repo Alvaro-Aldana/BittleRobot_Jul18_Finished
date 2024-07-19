@@ -1,0 +1,30 @@
+create a virtual enviroment installing requierements.txt
+run $ source .venv/bin/activate
+run $ python3 READ_ME/run_me.py
+run $ python3 -m pip install pyserial
+
+turn on robot, check if bluetooth is on, check if robot is not connected to another port
+run $ python3 main.py
+
+IF OFFLINE:
+change recognize_google to recognize_sphinx
+
+
+
+
+how does it work?
+serial port connects in main
+when succesful it calls on a main loop 
+in the main loop:
+    waits until command word is said to do anything
+    once command word is said the robot will ask you what you want it to do
+    turns speech into text
+    than text is then analzyed and lemmantized
+    the analyzer will try to complete actions with the text given
+    many actions can be given at once
+    if there is an incomplete action it will save it and ask for you to complete it
+    after analyzing the robot will run the command(s) 
+    rinse and repeat untill one says quit, then code will end 
+closes connection
+
+
